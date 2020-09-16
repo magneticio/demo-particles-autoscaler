@@ -18,7 +18,7 @@ The autoscaler is configured using environment variables.
 #### Required
 `DEPLOYMENT_NAME` - The name of the Kubernetes Deployment to be scaled.
 
-`DEPLOYMENT_LABEL` - The Kubernetes Labels used to identify the Pods managed by the Deployment. These are the labels specified when you create the service in Vamp Cloud.
+`DEPLOYMENT_LABELS` - The Kubernetes Labels used to identify the Pods managed by the Deployment. These are the labels specified when you create the service in Vamp Cloud.
 
 `NAMESPACE` - The Namespace to look in for the Deployment. Defaults to the Namespace in which the Job is running.
 
