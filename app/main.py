@@ -70,7 +70,7 @@ def job():
             print('No change')
         else:
             appsV1 = client.AppsV1Api()
-            resp = appsV1.read_namespaced_deployment_scale(namespace="particles-test", name='particles-v1.0.0')
+            resp = appsV1.read_namespaced_deployment_scale(namespace=env_namespace, name=env_deployment_name)
             current_scale = resp.to_dict()['spec']['replicas']
             print("Current scale: {}" .format(current_scale))
             desired_scale = scale + current_scale
@@ -79,7 +79,7 @@ def job():
             if desired_scale >= env_min_replicas and desired_scale <= env_max_replicas:
                 print("Scaling from {} to {} replicas" .format(current_scale, desired_scale))
                 patch = {"spec": {"replicas": desired_scale}}
-                resp =appsV1.patch_namespaced_deployment_scale(namespace="particles-test", name='particles-v1.0.0', body=patch)
+                resp =appsV1.patch_namespaced_deployment_scale(namespace=env_namespace, name=env_deployment_name, body=patch)
                 print("Response: {}" .format(resp.to_dict()['spec']))
             elif desired_scale < env_min_replicas:
                 print("No change: min replicas is {}" .format(env_min_replicas))
